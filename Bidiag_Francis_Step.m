@@ -1,10 +1,9 @@
 function B = Bidiag_Francis_Step( B )
     %Francis_Step Perform one Francis Implicit QR Step
-    B;
     [ m, n ] = size( B );
-    % if m <= 2 
-    %     return
-    % end
+    if m <= 2 
+        return
+    end
     
     % Introduce the bulge
     % Compute the first Givens' rotation
@@ -15,7 +14,8 @@ function B = Bidiag_Francis_Step( B )
     Gt0;
    
     B(1:2,1:2) = B(1:2,1:2)*Gt0;
-
+    
+    %Loop from 1 to m-1
     for i=1:m-1
       F0 =  Givens_rotation([ B(i,i)
                                B(i+1,i)]);
